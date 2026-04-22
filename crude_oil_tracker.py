@@ -4,6 +4,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from datetime import datetime
+import pytz
 
 WTI_ALERT_PRICE   = 85.00   # Alert if WTI crosses above this
 BRENT_ALERT_PRICE = 88.00   # Alert if Brent crosses above this
@@ -18,7 +19,8 @@ spread      = round(wti_price - brent_price, 2)
 
 print("=" * 40)
 print("  CRUDE OIL PRICE MONITOR")
-print(f"  {datetime.now().strftime('%b %d, %Y  %I:%M %p')}")
+eastern = pytz.timezone('America/New_York')
+print(f"  {datetime.now(eastern).strftime('%b %d, %Y  %I:%M %p')} ET")
 print("=" * 40)
 print(f"  WTI Crude:    ${wti_price}/bbl")
 print(f"  Brent Crude:  ${brent_price}/bbl")
